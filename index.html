@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civic Issue Reporter</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📍</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Civic Issue Reporter</h1>
+    <p>Report broken streetlights, water leaks, overflowing bins and more.</p>
+  </header>
+
+  <main>
+    <p class="notice">
+      Demo version: reports are saved in <strong>this browser only</strong> on this device.
+      Clearing your browser data will remove them.
+    </p>
+        <section id="dashboard-section">
+      <h2>Dashboard</h2>
+
+      <div class="stat-cards">
+        <div class="stat-card stat-total">
+          <span class="stat-number" id="stat-total">0</span>
+          <span class="stat-label">Total Reports</span>
+        </div>
+        <div class="stat-card stat-open">
+          <span class="stat-number" id="stat-open">0</span>
+          <span class="stat-label">Open</span>
+        </div>
+        <div class="stat-card stat-progress">
+          <span class="stat-number" id="stat-progress">0</span>
+          <span class="stat-label">In Progress</span>
+        </div>
+        <div class="stat-card stat-resolved">
+          <span class="stat-number" id="stat-resolved">0</span>
+          <span class="stat-label">Resolved</span>
+        </div>
+      </div>
+
+      <div class="breakdown-grid">
+        <div>
+          <h3>By Category</h3>
+          <div id="category-breakdown"></div>
+        </div>
+        <div>
+          <h3>By Priority</h3>
+          <div id="priority-breakdown"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="report-section">
+      <h2>Submit a New Report</h2>
+
+      <form id="report-form">
+        <label for="title">Issue Title</label>
+        <input type="text" id="title" placeholder="e.g. Streetlight not working" required>
+
+        <label for="category">Category</label>
+        <select id="category" required>
+          <option value="">-- Select a category --</option>
+          <option value="Streetlight">Broken Streetlight</option>
+          <option value="Water Leak">Water Leak</option>
+          <option value="Garbage">Overflowing Bin</option>
+          <option value="Road Damage">Road Damage</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="location">Location</label>
+        <input type="text" id="location" placeholder="e.g. Near Park Street metro gate" required>
+
+        <label for="priority">Priority</label>
+        <select id="priority" required>
+          <option value="Low">Low</option>
+          <option value="Medium" selected>Medium</option>
+          <option value="High">High</option>
+        </select>
+
+        <label for="description">Description</label>
+        <textarea id="description" rows="4" placeholder="Describe the problem..." required></textarea>
+
+        <button type="submit">Submit Report</button>
+      </form>
+    </section>
+
+    <section id="list-section">
+      <h2>All Reports</h2>
+            <div class="filter-bar">
+        <input type="text" id="search-input" placeholder="Search by ID, title, location or description...">
+
+        <select id="filter-category">
+          <option value="">All categories</option>
+          <option value="Streetlight">Broken Streetlight</option>
+          <option value="Water Leak">Water Leak</option>
+          <option value="Garbage">Overflowing Bin</option>
+          <option value="Road Damage">Road Damage</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <select id="filter-status">
+          <option value="">All statuses</option>
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
+        </select>
+
+        <button type="button" id="clear-filters">Clear</button>
+      </div>
+
+      <p id="result-count"></p>
+      <div class="table-wrapper">
+        <table id="reports-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Change Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="reports-body">
+          </tbody>
+        </table>
+      </div>
+      <p id="empty-message">No reports yet. Submit one above!</p>
+    </section>
+  </main>
+    <footer>
+    <p>Civic Issue Reporter &middot; A learning project built with HTML, CSS and JavaScript</p>
+    </footer>
+    <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-box">
+      <h3 id="modal-title">Report details</h3>
+      <div id="modal-body"></div>
+      <button type="button" id="modal-close">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
